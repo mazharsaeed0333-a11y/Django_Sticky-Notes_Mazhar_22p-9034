@@ -18,6 +18,5 @@ cd sticky_project
 
 - `http://127.0.0.1:8000/register/` — Register
 - `http://127.0.0.1:8000/login/` — Login
-- `http://127.0.0.1:8000/logout/` — Logout
 - `http://127.0.0.1:8000/notes/` — Note list (home)
 - `http://127.0.0.1:8000/notes/new/` — Create note
