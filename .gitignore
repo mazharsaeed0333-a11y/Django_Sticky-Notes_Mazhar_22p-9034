@@ -10,9 +10,7 @@ db.sqlite3
 *.pdf
 
 # IDE/editor
-.cursor/
 .vscode/
-*.swp
 
 # OS
 Thumbs.db
