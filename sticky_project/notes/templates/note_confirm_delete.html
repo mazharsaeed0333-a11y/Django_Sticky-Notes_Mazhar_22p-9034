@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Note{% endblock %}
+
+{% block content %}
+  <div class="card" style="max-width: 720px; margin: 0 auto;">
+    <div style="font-size: 20px; font-weight: 700; margin-bottom: 6px;">Delete note?</div>
+    <div class="help" style="margin-bottom: 14px;">This action can’t be undone.</div>
+
+    <div class="note" style="background: {{ note.color }}; margin-bottom: 14px;">
+      <h3>{{ note.title }}</h3>
+      <p>{{ note.content }}</p>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="actions">
+        <button class="pill btn-danger" type="submit">Yes, delete</button>
+        <a class="pill" href="{% url 'note_list' %}">Cancel</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

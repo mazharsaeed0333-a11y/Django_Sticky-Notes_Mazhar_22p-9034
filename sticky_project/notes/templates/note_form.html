@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if mode == "edit" %}Edit Note{% else %}New Note{% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="card" style="max-width: 720px; margin: 0 auto;">
+    <div style="font-size: 20px; font-weight: 700; margin-bottom: 6px;">
+      {% if mode == "edit" %}Edit Note{% else %}Create Note{% endif %}
+    </div>
+    <div class="help" style="margin-bottom: 14px;">
+      Pick a color to make it feel like a real sticky note.
+    </div>
+
+    {% if form.non_field_errors %}
+      <div class="errors">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="{{ form.title.id_for_label }}">Title</label>
+        {{ form.title }}
+        {% if form.title.errors %}<div class="errors">{{ form.title.errors }}</div>{% endif %}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.content.id_for_label }}">Content</label>
+        {{ form.content }}
+        {% if form.content.errors %}<div class="errors">{{ form.content.errors }}</div>{% endif %}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.color.id_for_label }}">Color</label>
+        {{ form.color }}
+        {% if form.color.errors %}<div class="errors">{{ form.color.errors }}</div>{% endif %}
+      </div>
+
+      <div class="actions">
+        <button class="pill" type="submit">{% if mode == "edit" %}Save changes{% else %}Create{% endif %}</button>
+        <a class="pill" href="{% url 'note_list' %}">Cancel</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

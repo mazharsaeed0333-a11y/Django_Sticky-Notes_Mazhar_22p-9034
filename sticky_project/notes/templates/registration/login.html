@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <div class="card" style="max-width: 520px; margin: 0 auto;">
+    <div style="font-size: 20px; font-weight: 700; margin-bottom: 6px;">Welcome back</div>
+    <div class="help" style="margin-bottom: 14px;">Log in to view your sticky notes.</div>
+
+    {% if form.errors %}
+      <div class="errors">
+        <div style="font-weight: 700; margin-bottom: 6px;">Login failed</div>
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="{{ form.username.id_for_label }}">Username</label>
+        {{ form.username }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.password.id_for_label }}">Password</label>
+        {{ form.password }}
+      </div>
+
+      <input type="hidden" name="next" value="{{ next }}" />
+
+      <div class="actions">
+        <button class="pill" type="submit">Login</button>
+        <a class="pill" href="{% url 'register' %}">Create account</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

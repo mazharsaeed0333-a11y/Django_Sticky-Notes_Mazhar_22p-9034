@@ -1,0 +1,18 @@
+# Python / virtual environments
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Django
+db.sqlite3
+*.sqlite3
+
+# IDE/editor
+.cursor/
+.vscode/
+*.swp
+
+# OS
+Thumbs.db
+

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}My Notes{% endblock %}
+
+{% block content %}
+  <div class="card" style="margin-bottom: 14px;">
+    <div class="actions" style="justify-content: space-between;">
+      <div>
+        <div style="font-size: 20px; font-weight: 700;">My Notes</div>
+        <div class="help">Only you can see and edit your notes.</div>
+      </div>
+      <a class="pill" href="{% url 'note_create' %}">+ Create note</a>
+    </div>
+  </div>
+
+  {% if notes %}
+    <div class="grid">
+      {% for note in notes %}
+        <div class="note" style="background: {{ note.color }};">
+          <h3>{{ note.title }}</h3>
+          <p>{{ note.content }}</p>
+          <div class="meta">
+            <a class="btn" href="{% url 'note_edit' note.id %}">Edit</a>
+            <a class="btn btn-danger" href="{% url 'note_delete' note.id %}">Delete</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="card">
+      <div style="font-weight: 700; margin-bottom: 6px;">No notes yet</div>
+      <div class="help">Create your first sticky note to get started.</div>
+    </div>
+  {% endif %}
+{% endblock %}

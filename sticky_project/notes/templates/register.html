@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+  <div class="card" style="max-width: 520px; margin: 0 auto;">
+    <div style="font-size: 20px; font-weight: 700; margin-bottom: 6px;">Create account</div>
+    <div class="help" style="margin-bottom: 14px;">Sign up to keep your notes private.</div>
+
+    {% if form.non_field_errors %}
+      <div class="errors">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="{{ form.username.id_for_label }}">Username</label>
+        {{ form.username }}
+        {% if form.username.errors %}<div class="errors">{{ form.username.errors }}</div>{% endif %}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.password1.id_for_label }}">Password</label>
+        {{ form.password1 }}
+        {% if form.password1.errors %}<div class="errors">{{ form.password1.errors }}</div>{% endif %}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.password2.id_for_label }}">Confirm password</label>
+        {{ form.password2 }}
+        {% if form.password2.errors %}<div class="errors">{{ form.password2.errors }}</div>{% endif %}
+      </div>
+
+      <div class="actions">
+        <button class="pill" type="submit">Register</button>
+        <a class="pill" href="{% url 'login' %}">Already have an account?</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}
